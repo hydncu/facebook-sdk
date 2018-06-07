@@ -109,7 +109,8 @@ class GraphAPI(object):
         response = self.request(
             "{0}/{1}/permissions".format(self.version, user_id), {}
             )["data"]
-        return {x["permission"] for x in response if x["status"] == "granted"}
+        # return {x["permission"] for x in response if x["status"] == "granted"}
+        return set((x["permission"] for x in response if x["status"] == "granted"))
 
     def get_object(self, id, **args):
         """Fetches the given object from the graph."""
